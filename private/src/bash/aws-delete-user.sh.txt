@@ -1,0 +1,26 @@
+{
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+
+  echo Removing the Access Keys
+  access_keys=$(aws iam list-access-keys --user-name FullStackDev \
+    --query 'AccessKeyMetadata[].AccessKeyId' --output text)
+  for key_id in $access_keys
+  do
+    aws iam delete-access-key --user-name FullStackDev \
+      --access-key-id $key_id
+  done
+
+  echo Detaching Policies
+  for policy in \
+    AmazonEC2FullAccess AWSCloudShellFullAccess IAMReadOnlyAccess
+  do
+    aws iam detach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo Deleting the login profile
+  aws iam delete-login-profile --user-name FullStackDev
+
+  echo Deleting the User
+  aws iam delete-user --user-name FullStackDev
+}

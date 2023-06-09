@@ -1,0 +1,7 @@
+{
+  mkdir javascript && cd $_
+  cat > HelloWorld.js <<'EOF'
+console.log('Hello World!')
+EOF
+  node HelloWorld.js
+}

@@ -1,0 +1,1073 @@
+= How would a software developer create technical documents and sell them using the disruptive power of Web3 technologies? (Part I)
+include::{includes-dir}/header.adoc[]
+include::{includes-dir}/uris.adoc[]
+include::{includes-dir}/icons.adoc[]
+include::{includes-dir}/attributes.adoc[]
+
+include::{includes-dir}/cover1.adoc[]
+
+<<<
+[.big]
+If you write technical texts (like articles, tutorials, ebooks, etc) do you
+know that with a single text writing in {AsciiDoc} format (like
+{uri-this-doc}[this one]) and <<good-tools,the right tools>>, you could
+offer more value to your readers (customers) by presenting it in different
+formats? +
+{empty} +
+Did you know that if you acquire knowledge in {Web3}, you will have much more
+creative ways to sell your texts? +
+{empty} +
+In this article, I will explore a little more about this subject, beginning by
+showing you how to generate many outputs from one unique document code
+({uri-this-doc}[this]). +
+{empty} +
+In Part II of this article (coming soon), I will detail how {Web3} technologies
+can achieve the second part of the story: help authors sell their texts using
+innovative ideas as a plus to the traditional means of payment, which involves
+prominent editors.
+
+ifdef::backend-pdf[]
+<<<
+toc::[]
+endif::[]
+
+<<<
+== Before we start, let me introduce myself
+
+[[FullStackDeveloper]]
+I (the <<author,author>> of this article) {uri-pj-fullstackdev}[work as a Full
+Stack Developer] who has been acting in several areas of software development
+(since 1993). I have experience from the infrastructure to the front end,
+passing through {uri-pj-devops}[extensive coding time in middleware and the
+back end].
+
+{uri-pj-triathlete}[I'm also a triathlete, three (3) times Ironman].
+
+So I didn't get used to not being an expert in swimming, cycling, or running,
+just as I don't consider myself, in my work, an infrastructure, backend, or
+frontend expert.
+
+[.underline]#In the software development world, my role has been to put the
+pieces of a giant puzzle together#. Today, with the help of technologies of
+Artificial Intelligence, my work has been made easier to do.
+
+That way, some of my software tutorials (<<ts,like this one>>)
+avoid discussing a single topic. Instead, they combine several things,
+providing a more realistic view of how the software works.
+
+As you can read, *[.underline]#I am a {TechWriter}#*. I need to write about
+things that I develop or learn, and this is a thing that I like to do. You can
+read many of my texts at the following link:
+
+[.text-center]
+{uri-pj-sitemap}#articles-or-tutorials.
+
+I'm a Brazilian guy. So English is not my primary language. But I am doing my
+best to share my knowledge with you in this language. At the same time, I
+intend to help other software developers who speak Portuguese improve their
+skills. That's why I also write closed captions in Portuguese for my videos.
+
+:numbered:
+
+<<<
+== This is a small article in which I insert a tutorial (a little longer) to explain how you could write it to turn your readers into customers!
+
+****
+[.big.text-center]
+As a {TechWriter} +
+(and a <<FullStackDeveloper>>),
+
+[.text-center]
+[%hardbreaks]
+I created <<ts,a tutorial>>
+(*<<what-do-we-need,Super easy to follow>>*, as you will see in a moment!{icon-grinning-face})
+You don't need to be a programmer like me
+to write good professional tutorials and books.
+But *<<want-to-know-more,you need to know how to write better>>!*
+{empty}
+<<ts,This tutorial>> is written in {AsciiDoc} format
+(using {uri-asciidoctorjs}[Asciidoctor.js],
+one <<my-extension,extension I developed>> for it,
+and <<good-tools,other charming tools>>)
+[[this-doc]]Here is the source code of it:
+ifdef::public-version[]
+*{uri-public}/{this-doc}*
+({my-extension} generated this code)
+endif::[]
+ifndef::public-version[]
+*{uri-this-doc}*
+(this was the original code I wrote)
+endif::[]
+{empty}
+If you want to be a Full Stack Developer
+(starting from using {AWS} and {Java}, for example)
+you may want to start your journey by following <<ts,this tutorial>>.
+But ... wait ... In fact ...
+*[red]#this is not a tutorial for newbie programmers#*!
+[empty]
+[.big.text-center]
+*[green]#This is an article that I wrote for {TechWriters}#*!
+{empty}
+[.text-center]
+[%hardbreaks]
+So, *the exciting part* of this text
+is not about the following <<ts,tutorial>>!
+The cool here is the format (<<this-doc,in the {this-doc}>>) presented by
+it, not the content.
+It's about the way you can write tutorials with the structure and the
+<<good-tools,right tools>> to benefit you and your customers.
+It's about {uri-public}#benefits[the benefits you can give to your
+readers] (when they buy <<ts,this tutorial>>).
+****
+
+<<<
+[[a-sample-tutorial]] 
+== A sample tutorial that you, as a {TechWriter}, could take as an example to write yours (pay attention to its format!)
+
+As mentioned, pay attention to the format I wrote in
+({uri-this-doc}[{this-doc}]). At some point, <<my-course,I will launch my
+course covering it and other tools>>.
+
+I wrote <<ts,this tutorial>> with an audience studying to take the
+{uri-aws-certified-developer}[AWS Certified Developer] certification exam.
+
+Intending to sell texts related to this theme, my strategy to sell them is,
+among others, to present the execution of the private version of my tutorial in
+a video on my YouTube channel. But, in the video description, I offer a link to
+the public text of my tutorial and show the benefits readers will get when they
+buy it.
+
+So, in short, to sell my tutorials, my strategy needs:
+
+. {uri-public}#ts[A public version of my tutorial].
+.. This link above is copied to the video description where I it.
+.. It includes a section where I present my
+{uri-public}#about-this-tutorial[benefits to buyers].
+. {uri-private}#ts[A private version of it], including
+ifdef::backend-html5[]
+{uri-private}#pdf-version[this PDF].
+endif::[]
+ifdef::backend-pdf[]
+this PDF you are reading.
+endif::[]
+.. It includes a section where <<about-this-tutorial,I thank my customers>>
+and give them all their benefits.
+
+<<<
+[[ts]] 
+=== {a-sample-tutorial}
+
+==== Introduction
+
+[%hardbreaks.text-center]
+Video recorded in Portuguese.
+Click the image below to open it on YouTube.
+
+[.text-center]
+video::UCac0PziHHQ[youtube,list=PL3jVhh9mXmz9lzQiUlAbwjssOCayiCRmp]
+
+In practical terms, you will not like creating an AWS environment using what I
+will present in this tutorial. To create a cloud infrastructure on AWS,
+solutions like {uri-aws-cdk}[AWS CDK], {uri-terraform}[Terraform], or even
+{uri-vagrant}[Vagrant] ({uri-github-pj-gs-rest-service-aws}[the way I
+showed in this Git repository (which I built in 2018)]) are much more practical
+and straightforward.
+
+I also use many other alternatives (cheaper and very fast to mount) to create
+development environments. For example, {uri-aws-cloud9}[AWS Cloud9],
+{uri-github-codespace}[GitHub Codespace], {uri-gitpod}[Gitpod], etc.
+
+However, the basic knowledge (of {AWS} and {Java} fundamentals) I will give you
+in this tutorial is quite valuable for learning purposes. For example, suppose
+you want to obtain the {uri-aws-certified-developer}[AWS Certified Developer]
+certification. What you will practice using the commands below will serve as a
+basis for understanding {uri-aws-iam}[IAM] and {uri-aws-ec2}[EC2], which, in
+turn, are required in the test for this certification.
+
+So, in the <<part-1,first part>>, I demonstrate how to create a machine to
+develop applitions using {Java} and {NodeJS}. In <<part-2,part 2>>, I
+illustrate the use of this environment to construct charming applications
+in my following tutorials.
+
+WARNING: In this tutorial my focus is not teatch you how to develop in {Java}
+or {NodeJS}. So, here I'll show you only a simple "Hello World!" in both
+languages.
+
+<<part-3,Finally>>, I present how you can unbuild
+the cloud environment.
+
+[[what-do-we-need]]
+==== What do we need to install to follow this tutorial?
+
+*[.underline]#Nothing but a browser!#*
+
+We'll only need to have access to our root AWS account. So, if you don't have
+an account on AWS, create it.
+
+After that, we'll be using {AWSCloudShell} to {copy-n-paste} all the commands
+(Bash scripts) in this tutorial to it. These scripts extensively use {AWSCLI}
+commands (commented on them).
+
+==== What do we need to know before starting it?
+
+Only two programming languages, at a basic level of knowledge:
+
+* Shell Scripting ({Bash}).
+* {Java}. We'll use the {GraalVM}.
+* {JavaScript} (with {NodeJS} inside {GraalVM}).
+
+We'll build a Linux development environment. So, I assume you know the basics
+about it too.
+
+[[part-1]]
+==== -> Part 1 <-
+
+*All the commands that I will show you here need only to be typed (or copied)
+to a terminal running Bash ({AWSCloudShell}).* So, just open it and start to
+{copy-n-paste} the following commands. Simple as that!{icon-winking-face}
+
+ifdef::backend-pdf[]
+[TIP]
+====
+You can right-click on each code block in image format using this PDF to open
+it in your browser. Then you can use the famous "{copy-n-paste}".
+====
+endif::[]
+
+===== Creating an AWS user
+
+[,bash,gen-code:bash/create-aws-user.sh]
+----
+{
+  echo Creating the User
+  aws iam create-user --user-name FullStackDev
+
+  echo Creating an Access Key
+  access_key=$(aws iam create-access-key --user-name FullStackDev)
+
+  echo Saving the access key
+  echo "$access_key" > FullStackDev.access-key.json
+
+  echo Attaching the required policies to the user
+  for policy in AmazonEC2FullAccess AWSCloudShellFullAccess
+  do
+    aws iam attach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo -n Retrieving the Account ID '(12 digits): '
+  aws sts get-caller-identity --query 'Account' \
+    --output text > FullStackDev.accountid.txt
+  cat FullStackDev.accountid.txt
+
+  echo Creating a password for the user FullStackDev
+
+  # See the NOTE password-generation
+  echo "1^$(tr -cd '[:alnum:]' < /dev/urandom |
+    fold -w11 | head -n1)" > FullStackDev.password.txt
+
+  # After the command below, you can test your login
+  # (NOTE login-testing)
+  echo Creating a login profile for user FullStackDev
+  aws iam create-login-profile --user-name FullStackDev \
+    --password $(<FullStackDev.password.txt)
+}
+----
+
+ifndef::public-version[]
+Some NOTES about the code above:
+
+* *password-generation* -> The password is randomly generated. It starts with 
+the fixed `1^`. Then it gains 11 more characters. This is to avoid the
+following error:
++
+----
+An error occurred (PasswordPolicyViolation) when calling the CreateLoginProfile
+operation: Password should meet 1 more of the following requirements: Password
+should have at least one number, Password should have at least one symbol
+----
+* *login-testing*: Use the output of the next command in order to
+login on AWS through a new incognito browser window:
++
+[,bash,gen-code:bash/new-aws-login.sh]
+----
+cat <<EOF
+Open https://$(<FullStackDev.accountid.txt).signin.aws.amazon.com/console
+
+-> Credentials <-
+IAM User name: FullStackDev
+Password: $(<FullStackDev.password.txt)
+
+-> References ->
+AWS/sign-in-urls-defined
+EOF
+----
++
+After logging, access the {AWSCloudShell} and try this command:
++
+[,bash,gen-code:bash/iam-get-user.sh]
+----
+aws iam get-user --query 'User.UserName' --output text
+----
++
+You will receive the following error:
++
+----
+An error occurred (AccessDenied) when calling the GetUser operation: User:
+arn:aws:iam::229248205759:user/FullStackDev is not authorized to perform:
+iam:GetUser on resource: user FullStackDev because no identity-based policy
+allows the iam:GetUser action
+----
++
+So, back back to the cloudshell opened with your root account, type the 
+following command to give that permission to the user `FullStackDev`:
++
+[,bash,gen-code:bash/iam-attach-user-policy.sh]
+----
+aws iam attach-user-policy --user-name FullStackDev \
+  --policy-arn arn:aws:iam::aws:policy/IAMReadOnlyAccess
+----
++
+Now, test the last `FullStackDev` command. You will see that it will succeed! +
+Sign out `FullStackDev` and close its incognito window.
+endif::[]
+
+===== Defining some AWS environment variables
+
+The variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are used
+to indicate that we will be using the user `FullStackDev` in our following
+{AWSCLI} commands.
+
+[,bash,gen-code:bash/create-aws-envvars.sh]
+----
+{
+  echo Defining some environment variables
+  export AWS_ACCESS_KEY_ID=$(jq -r '.AccessKey.AccessKeyId' \
+    ~/FullStackDev.access-key.json)
+  export AWS_SECRET_ACCESS_KEY=$(jq -r '.AccessKey.SecretAccessKey' \
+    ~/FullStackDev.access-key.json)
+  export AWS_DEFAULT_REGION=us-east-1
+}
+----
+
+Instead of using these environment variables, we could also use the command `aws
+configure` to set them in a directory called `~/.aws/`.
+This command will create files named `credentials` and `config` inside this
+directory with the same information configured in the variables above.
+
+[NOTE]
+====
+. We are using these variables in the cloud shell we are using for the root
+user because we want all objects created from the following commands to be
+associated with the FullStackDev user and not with our root user. That's good
+practice!
+. We wouldn't need to define these environment variables if we kept the
+CloudShell window used by the FullStackDev user open and executed the instance
+creation commands inside it.
+====
+
+===== Creating the AWS instance
+
+Let's configure some other environment variables related to the machine we'll
+create and export them:
+
+[,bash,subs=attributes+,gen-code:bash/create-my_machine-variables.sh]
+----
+{
+  export my_machine_name={my_machine_name}
+  export my_machine_security_group=DevMachines
+}
+----
+
+Create the instance:
+
+[,bash,gen-code:bash/create-aws-instance.sh]
+----
+{
+  echo Creating the Security Group \"$my_machine_security_group\"
+  aws ec2 create-security-group \
+    --group-name $my_machine_security_group --description $my_machine_name
+
+  echo Authorizing access to port 22
+  aws ec2 authorize-security-group-ingress \
+    --group-name $my_machine_security_group --protocol tcp --port 22 \
+    --cidr 0.0.0.0/0
+
+  echo Creating the Key Pair
+  aws ec2 create-key-pair --key-name FullStackDev \
+    --query 'KeyMaterial' --output text > FullStackDev.pem
+  chmod 400 FullStackDev.pem
+
+  echo Building a backup of all credentials. \
+    Save it to your computer!
+  tar cvf FullStackDev.tar FullStackDev.*
+
+  echo Launching the EC2 Instance
+  aws ec2 run-instances --image-id ami-053b0d53c279acc90 \
+    --count 1 --instance-type t2.medium --key-name FullStackDev \
+    --security-group-ids $my_machine_security_group --tag-specifications \
+    "ResourceType=instance,Tags=[{Key=Name,Value=$my_machine_name}]"
+}
+----
+
+Wait for the instance creation:
+
+[,bash,gen-code:bash/wait-instance-creation.sh]
+----
+{
+  echo Waiting for \"$my_machine_name\" to Start ...
+  aws ec2 wait instance-running --filters \
+    "Name=tag:Name,Values=$my_machine_name"
+
+  echo -n 'Retrieving the Instance ID: '
+  instance_id=$(aws ec2 describe-instances --filters \
+    "Name=tag:Name,Values=$my_machine_name" --query \
+    'Reservations[].Instances[].InstanceId' --output text)
+  echo $instance_id
+
+  echo -n 'Retrieving the Public DNS Name: '
+  public_dns_name=$(aws ec2 describe-instances \
+    --instance-ids $instance_id --query \
+    'Reservations[].Instances[].PublicDnsName' --output text)
+  echo $public_dns_name
+
+  echo "ubuntu@$public_dns_name" > FullStackDev.$my_machine_name
+  tar rf FullStackDev.tar FullStackDev.$my_machine_name
+}
+----
+
+===== Saving the user credentials
+
+Not that you you will have a bunch of 
+`FullStackDev` files generated:
+
+[,bash,gen-code:bash/ls-FullStackDev.sh]
+----
+ls -la FullStackDev.*
+----
+
+[,txt,gen-code:txt/ls-FullStackDev.txt]
+----
+include::{includes-dir}/{docname}/ls-FullStackDev.txt[]
+----
+
+We may want to save the file `FullStackDev.tar`
+if we want keep our virtual machine.
+
+In order to download this file, click in `Actions/Download file`,
+as shown in the following figure:
+
+image::cloudshell.1.png[]
+
+Next, specify the name of the file to download:
+
+image::cloudshell.2.png[]
+
+===== Logging into the instance via SSH
+
+[,bash,gen-code:bash/logging-into-the-instance.sh]
+----
+{
+  echo Entering the Instance via SSH
+  ssh -i FullStackDev.pem ubuntu@$public_dns_name
+}
+----
+
+[TIP]
+====
+If you saved the `FullStackDev.tar` file on a local machine with a Linux
+environment in a directory called `~/Downloads`, you could try the following
+steps to gain remote access to the `{my_machine_name}` machine we just created:
+
+[,bash,gen-code:bash/logging-into-the-devmachine1.sh]
+----
+{
+  cd ~/Downloads
+  tar xf FullStackDev.tar
+  ssh -i FullStackDev.pem $(<FullStackDev.$my_machine_name)
+}
+----
+====
+
+===== Checking the software versions
+
+After following the last section, you should have your Linux machine created.
+It will be an environment mounted with a Ubuntu version 22.04.
+
+So, the following are the only prerequisites that we need to attend before
+<<starting-to-code,starting to code in Java>>:
+
+. An {Bash} terminal.
+. <<add-packages,Zip and Unzip installed>> (to <<sdkman,install SDKMAN>>).
+. Git installed and <<git-configure,configured>>.
+. <<java-install,Java installed>>.
+
+These are the expected versions of the software prerequisites, after the
+machine creation:
+
+|===
+| Command | Expected Ouput
+
+a|
+[,bash,gen-code:bash/bash-version.sh]
+----
+echo $BASH_VERSION
+----
+a|
+[,txt,gen-code:txt/bash-version.txt]
+----
+5.1.16(1)-release
+----
+
+a|
+[,bash,gen-code:bash/git-version.sh]
+----
+git --version
+----
+a|
+[,txt,gen-code:txt/git-version.txt]
+----
+git version 2.34.1
+----
+|===
+
+ifdef::public-version[]
+TIP: Want to *copy and paste* the commands above directly into your terminal? +
+{ThisIsAFeatureForCustomers}
+endif::[]
+
+[[add-packages]]
+===== Installing more packages
+
+Install some other required packages:
+
+[,bash,gen-code:bash/install-packages.sh]
+----
+{
+  sudo apt update
+
+  # required by SDKMAN:
+  sudo apt -y install zip unzip
+
+  # required by GraalVM native-image:
+  sudo apt -y install gcc zlib1g-dev
+}
+----
+
+[TIP]
+====
+*In a Ubuntu 22.04 local machine environment* (your actual machine, outside the
+AWS), you could do our next steps by creating a local user `dev` and setting a
+password for it:
+
+[,bash,gen-code:bash/useradd.sh]
+----
+{
+  sudo useradd -m -s /bin/bash -G sudo dev
+  sudo passwd dev
+}
+----
+
+After that, you could use `sudo` to logging in with:
+
+[,bash,gen-code:bash/login-as-dev.sh]
+----
+sudo su - dev
+----
+====
+
+[[git-configure]]
+===== Configuring Git
+
+[,bash,gen-code:bash/configure-git.sh]
+----
+{
+  confirm() {
+    local prompt=$1
+    local varname=$2
+    while :
+    do
+      read -p "$prompt: " myvar
+      read -p "Confirm (Y/n)? " -n 1 -r
+      echo
+      [[ ${REPLY:-y} =~ ^[Yy]$ ]] && {
+        eval $varname="'$myvar'"
+        break
+      }
+    done
+  }
+  confirm user.name my_user &&
+    git config --global user.name "$my_user"
+  confirm user.email my_user &&
+    git config --global user.email "$my_user"
+  git config --global init.defaultBranch main
+}
+----
+
+Verify your configurations:
+
+[,bash,gen-code:bash/verify-git.sh]
+----
+git config --global --list
+----
+
+[[sdkman]]
+===== Installing SDKMAN
+
+[,bash,gen-code:bash/install-sdkman.sh]
+----
+{
+  curl -s "https://get.sdkman.io" | bash
+  source ~/.sdkman/bin/sdkman-init.sh
+}
+----
+
+[[java-install]]
+===== Installing Java (GraalVM version)
+
+[,bash,gen-code:bash/install-java.sh]
+----
+sdk install java 22.3.r19-grl && java -version
+----
+
+===== Installing Node.js (with GraalVM)
+
+Install the Node.js component, check the location of `node` and `npm` commands and their versions:
+
+[,bash,gen-code:bash/gu-install-nodejs.sh]
+----
+{
+  gu install nodejs
+  echo
+  for cmd in node npm
+  do
+    echo -n "$cmd (location / version): "
+    which $cmd | tr -d '\n'
+    echo -n " / "; $cmd -v
+  done
+}
+----
+
+[[part-2]]
+==== -> Part 2 <-
+
+[[starting-to-code]]
+===== Building the classic "Hello World!" in Java
+
+We will create a simple Java code that prints a "Hello World!".
+
+To do this using our opened terminal, {copy-n-paste} the following commands to
+it:
+
+ifdef::show-hidden-block[]
+[,java,gen-code-java:java/HelloWorld.java]
+----
+public class HelloWorld {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+}
+----
+endif::[]
+
+[,bash,subs=attributes+,gen-code:bash/create-java-code.sh]
+----
+{
+  mkdir -p simple-tutorial/{gen-code-java-dir} && cd $_
+  cat <<'EOF' > {gen-code-java-file}
+include::{generated-src-dir}/{gen-code-java}[]
+EOF
+}
+----
+
+Compile and run the code:
+
+[,bash,subs=attributes+,gen-code:bash/build-and-run-java-code.sh]
+----
+javac {gen-code-java-file} && java HelloWorld
+----
+
+Install GraalVM `native-image`:
+
+[,bash,gen-code:bash/gu-install-native-image.sh]
+----
+gu install native-image
+----
+
+Build ant test the `helloworld` binary:
+
+[,bash,gen-code:bash/native-image-helloworld.sh]
+----
+native-image HelloWorld
+----
+
+This takes a minute to execute:
+
+//[,bash,gen-code:txt/native-image-HelloWorld.txt]
+//....
+//include::{includes-dir}/{docname}/native-image-HelloWorld.txt[]
+//....
+image::helloworld.png[]
+
+Test the `helloworld`:
+
+[,bash,gen-code:bash/helloworld.sh]
+----
+./helloworld
+----
+
+In terms of performance, a native image is much superior:
+
+[,bash,gen-code:txt/native-helloworld.txt]
+----
+$ time java HelloWorld 
+Hello World!
+
+real    0m0.076s
+user    0m0.085s
+sys     0m0.014s
+
+$ time ./helloworld 
+Hello World!
+
+real    0m0.003s
+user    0m0.003s
+sys     0m0.000
+----
+
+Check the `helloworld` binary dependencies:
+
+[,bash,gen-code:bash/ldd-helloworld.sh]
+----
+ldd helloworld
+----
+
+This is what we expect to see as a result:
+
+[,txt,gen-code:txt/ldd-helloworld.txt]
+----
+linux-vdso.so.1 (0x00007ffea9353000)
+libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f2438e40000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2437e00000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f2438e77000)
+----
+
+Initialize a new Git repository and make your first commit:
+
+[,bash,gen-code:bash/git-init-and-commit.sh]
+----
+{
+  cd ..
+  git init
+  cat > .gitignore <<EOF
+*.class
+/java/helloworld*
+EOF
+  git add .
+  git commit -m 'Made my first commit. Added HelloWorld.java'
+}
+----
+
+===== Building the classic "Hello World!" in JavaScript
+
+[,bash,gen-code:bash/create-helloworld-js.sh]
+----
+{
+  mkdir javascript && cd $_
+  cat > HelloWorld.js <<'EOF'
+console.log('Hello World!')
+EOF
+  node HelloWorld.js
+}
+----
+
+Let's do all last `git commit` in this tutorial:
+
+[,bash,gen-code:bash/git-commit-helloworld-js.sh]
+----
+git add -A && git commit -m 'Added HelloWorld.js'
+----
+
+[[part-3]]
+==== -> Part 3 <-
+
+===== Deleting the AWS instance
+
+First, exit your VM.
+
+TIP: Type kbd:[Ctrl+D] or `exit`.
+
+Next, in the `cloudshell` terminal, {copy-n-paste} the following commands:
+
+[,bash,gen-code:bash/aws-delete-instance.sh]
+----
+{
+  echo Retrieving the Instance ID
+  instance_id=$(aws ec2 describe-instances --filters \
+    "Name=tag:Name,Values=$my_machine_name" --query \
+    'Reservations[].Instances[].InstanceId' --output text)
+
+  [ "$my_machine_security_group" ] || {
+    echo Retrieving the Security Group ID
+    my_machine_security_group=$(aws ec2 describe-instances \
+      --instance-ids $instance_id --query \
+      'Reservations[].Instances[].SecurityGroups[].GroupId' --output text)
+  }
+
+  echo Retrieving the Key Pair Name
+  key_pair_name=$(aws ec2 describe-instances \
+    --instance-ids $instance_id --query \
+    'Reservations[].Instances[].KeyName' --output text)
+
+  echo Terminating the Instance
+  aws ec2 terminate-instances --instance-ids $instance_id
+
+  echo Waiting for the Instance to Terminate
+  aws ec2 wait instance-terminated --instance-ids $instance_id
+
+  echo Deleting the Tags associated with the Instance
+  aws ec2 delete-tags --resources $instance_id
+
+  echo Deleting the Security Group
+  aws ec2 delete-security-group --group-id $my_machine_security_group
+
+  echo Deleting the Key Pair
+  aws ec2 delete-key-pair --key-name $key_pair_name
+}
+----
+
+===== Deleting the AWS user
+
+[,bash,gen-code:bash/aws-delete-user.sh]
+----
+{
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+
+  echo Removing the Access Keys
+  access_keys=$(aws iam list-access-keys --user-name FullStackDev \
+    --query 'AccessKeyMetadata[].AccessKeyId' --output text)
+  for key_id in $access_keys
+  do
+    aws iam delete-access-key --user-name FullStackDev \
+      --access-key-id $key_id
+  done
+
+  echo Detaching Policies
+  for policy in \
+    AmazonEC2FullAccess AWSCloudShellFullAccess IAMReadOnlyAccess
+  do
+    aws iam detach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo Deleting the login profile
+  aws iam delete-login-profile --user-name FullStackDev 
+
+  echo Deleting the User
+  aws iam delete-user --user-name FullStackDev
+}
+----
+
+'''
+[.red.big.text-center]
+*That's it for this tutorial. +
+Thanks for following it!*
+
+ifndef::public-version[]
+<<<
+=== References
+
+{AWS}: ::
+. [[cloudshell]]*{AWSCloudShell}* -> {uri-aws-cloudshell}
+. *sign-in-url-defined* -> About sign-in URLs +
+  https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html
+
+{GraalVM}: ::
+. Node.js Runtime +
+  https://www.graalvm.org/22.0/reference-manual/js/NodeJS/
+. How to create a node.js Native Image with GraalVM +
+  https://stackoverflow.com/questions/53734585/how-to-create-a-node-js-native-image-with-graalvm
+. Build a Native Executable +
+  https://www.graalvm.org/22.2/reference-manual/native-image/
+endif::[]
+
+<<<
+[[about-this-tutorial]]
+=== {about-this-tutorial}
+
+:benefit-custom-content-desc: Content customized for you
+:benefit-copy-n-paste-desc: Facility to copy and paste commands
+:benefit-git-access-desc: Access to the Git repository
+:benefit-no-ads-desc: No advertisement
+:benefit-extra-content-desc: Extra content
+:benefit-pdf-version-desc: A PDF version
+:benefit-web3-tokens-desc: Web3 Tokens
+:benefit-direct-support-desc: Direct support
+
+ifdef::public-version[]
+You have read the *[red]#public version#* of this tutorial. I hope you enjoyed
+it. I do an even better job for audiences that buy my tutorials.
+
+[[benefits]]
+[.big.text-center]
+*This is what you will have when you purchase this tutorial from me*:
+
+. [[benefit-custom-content]]*{benefit-custom-content-desc}*. So, the private content
+you access contains unique information generated for you only!
+.. You will also receive updated versions of this tutorial when they become
+available.
+. [[benefit-copy-n-paste]]*{benefit-copy-n-paste-desc}* directly into your terminal.
+This will make your execution extremely simple and fast!
+.. You may have noticed that all the commands in this version are images. So,
+this gives a view of these commands but a not-so-fast way to enter them in your
+terminal because you will need to type it entirely on it.
+. [[benefit-git-access]]*{benefit-git-access-desc}*, with all the steps presented
+here, previously followed and made available through a simple `git clone`.
+. [[benefit-no-ads]]*{benefit-no-ads-desc}* is inserted in the course of the content.
+. [[gitt-4]]*{benefit-extra-content-desc}*: content or tips not presented or
+designed for this public version.
+.. For example, the "References" section.
+. [[benefit-pdf-version]]*{benefit-pdf-version-desc}* customized with your name
+inside and nice to read on your mobile devices.
+. [[benefit-web3-tokens]]*{benefit-web3-tokens-desc}* for each challenge, featured in
+the tutorial, you complete.
+. [[benefit-direct-support]]*{benefit-direct-support-desc}* from the author or
+members of his community.
+
+[.big.text-center]
+[%hardbreaks]
+*{uri-private}#ts[Buy the paid version]*
+_The link above is just a simulation!
+You will see the private version
+of this tutorial without paying anything!_
+endif::[]
+ifndef::public-version[]
+You read the *[blue]#paid version#* of this tutorial, which offers you (my
+customer) {uri-public}#benefits[some other benefits than the public
+version].
+
+Here are the benefits {uri-public}#benefits[that I promised] to you:
+
+. *{benefit-custom-content-desc}*: did you notice your name at some points in this
+text?
+. *{benefit-copy-n-paste-desc}*: did you notice the {copy-n-paste} button in the
+HTML version? Also, did you see that each block code in the PDF version
+(presented as an image) is clickable? When you click the figure of the source
+code, a window browser is opened, and then you can copy it.
+. *{benefit-git-access-desc}*: after you pass me your GitHub user account, you
+will have access to the private Git repository of tutorials like this.
+. *{benefit-no-ads-desc}*: did you see any ad in this version?{icon-winking-face}
+. *{benefit-extra-content-desc}*: did you notice the <<references>> section? Also,
+updates to this tutorial will receive more private content soon.
+. [[pdf-version]]*{benefit-pdf-version-desc}*:
+ifdef::backend-html5[]
+{download-it-here} -> {uri-private}/{this-pdf}
+endif::[]
+ifdef::backend-pdf[]
+You are reading it!{icon-winking-face}
+endif::[]
+. *{benefit-web3-tokens-desc}*: You will get more information about how to gain
+these Web3 tokens in the following tutorials.
+. *{benefit-direct-support-desc}*: Please, subscribe to [.underline]#my private
+Discord channel# to get my support.
+
+[.big.text-center]
+*{uri-public}#ts[See the public version]*
+endif::[]
+
+<<<
+[[want-to-know-more]]
+== Want to know more about how to write texts (tutorials, ebooks) like this one?
+
+[[good-tools]]
+=== I can indicate some good tools to you
+
+Here are some of the tools that I have experience in use to create my texts:
+
+[cols="1,4"]
+|===
+| Category | Tools
+
+| Text formats
+a|
+. {Markdown} and {GFM}
+. {MDX}
+. {AsciiDoc}
+
+| Text processors
+a|
+. {Txt2tags}
+. {_Asciidoctor} ({Ruby} version) including:
+.. {AsciidoctorJS} ({JavaScript} version) including {uri-asciidoctor-extensions}[many extensions] like {my-extension}
+.. {AsciidoctorJ} ({Java} version)
+
+| Text Editor
+a|
+. {Neovim}
+
+| Artificial Intelligence
+a|
+. {uri-google-translate}[Google Translate]
+. {uri-deepl-translate}[DeepL Translate]
+. {Grammarly}
+
+| Programming languages
+a|
+. {Bash}
+. {Python}
+. {JavaScript}
+. {Java}
+. {Groovy}
+. {Ruby}
+|===
+
+[[my-extension]]
+==== My *gen-code* extension
+
+. Is a {AsciidoctorJS} {uri-preprocessor-extension}[Preprocessor Extension].
+. The source of this document ({uri-this-doc}[{this-doc}]) uses it which is responsible for:
+.. Generate source files from source code that are inside some source blocks.
+.. Generate attributes used by the document itself.
+.. Convert these generated codes to images using tools like {uri-silicon}[Silicon] and {uri-text2png}[Text2png].
+.. Generate another document {uri-public}/{this-doc}[{this-doc} (public)] that only refer to the images created.
+. Currently, its source code is unavailable, but it will soon be open source.
+
+=== I can offer you a consultancy ...
+
+\... in which I will give you my tips about <<good-tools,the tools I use to
+create my documents>> and/ or we'll create some documents together on a topic
+of your need.
+
+[[my-course]]
+=== You can buy `my docs-as-code course` (it will be available soon)
+
+[[course-docs]]
+In my course, we will explore how the {AsciiDoc} format is used in some of my
+`docs-as-code` projects, including these:
+
+. The project that builds this document you are reading.
+.. It is created with some code in {Bash} and {JavaScript} (running on {NodeJS}).
+.. It uses {my-extension}.
+.. Currently, the generated PDF version is created by
+{uri-asciidoctor-pdf}[asciidoctor-pdf] (which uses a Ruby execution
+environment). But, until the availability of this course, I intend to migrate it
+to use {AsciidoctorWebPDF}.
+. https://github.com/paulojeronimo/paulojeronimo.github.io[The project of my WebSite].
+. https://paulojeronimo.com/cv/README.html[The project of my CV].
+. Some AsciiDoc slides, like these:
+.. https://paulojeronimo.com/asciidoc-dzslides-slides/
+
+So, based on the code of the projects above, we will see how the following
+tools are used to build AsciiDoc documents:
+
+. {Neovim} <- My favorite text editor.
+. {Bash} <- We'll use how I use it to build <<course-docs,these docs>>.
+.. {docker-asciidoctor-builder} <- A simple {Bash} tool that I developed and use a lot
+. {_Asciidoctor} ({Ruby} version).
+. {AsciidoctorJS} and some extensions (including {my-extension}).
+. https://pages.github.com/[GitHub Pages].
+
+As a bonus, I also intend to show you a little about the following tools:
+
+. {AsciidoctorWebPDF}.
+. https://antora.org/[Antora].

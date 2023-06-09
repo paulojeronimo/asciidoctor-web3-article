@@ -1,0 +1,10 @@
+cat <<EOF
+Open https://$(<FullStackDev.accountid.txt).signin.aws.amazon.com/console
+
+-> Credentials <-
+IAM User name: FullStackDev
+Password: $(<FullStackDev.password.txt)
+
+-> References ->
+AWS/sign-in-urls-defined
+EOF

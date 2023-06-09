@@ -1,0 +1,10 @@
+{
+  gu install nodejs
+  echo
+  for cmd in node npm
+  do
+    echo -n "$cmd (location / version): "
+    which $cmd | tr -d '\n'
+    echo -n " / "; $cmd -v
+  done
+}

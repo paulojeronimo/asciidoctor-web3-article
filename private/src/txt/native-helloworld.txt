@@ -1,0 +1,13 @@
+$ time java HelloWorld
+Hello World!
+
+real    0m0.076s
+user    0m0.085s
+sys     0m0.014s
+
+$ time ./helloworld
+Hello World!
+
+real    0m0.003s
+user    0m0.003s
+sys     0m0.000

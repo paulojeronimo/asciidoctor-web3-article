@@ -1,0 +1,5 @@
+{
+  cd ~/Downloads
+  tar xf FullStackDev.tar
+  ssh -i FullStackDev.pem $(<FullStackDev.$my_machine_name)
+}

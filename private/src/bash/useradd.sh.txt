@@ -1,0 +1,4 @@
+{
+  sudo useradd -m -s /bin/bash -G sudo dev
+  sudo passwd dev
+}

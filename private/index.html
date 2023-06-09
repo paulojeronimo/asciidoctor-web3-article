@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Paulo Jerônimo">
+<title>How would a software developer create technical documents and sell them using the disruptive power of Web3 technologies? (Part I)</title>
+<link rel="stylesheet" href="https://paulojeronimo.com/asciidoctor-web3-article/private/assets/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<base href="https://paulojeronimo.com/asciidoctor-web3-article/private/">
+<!-- https://github.com/asciidoctor/asciidoctor-extensions-lab/issues/61#issuecomment-1250335911 -->
+<script src="https://paulojeronimo.com/asciidoctor-web3-article/private/assets/clipboard.min.js"></script>
+<style>
+    .listingblock code[data-lang]::before {
+        display: none;
+        content: attr(data-lang) " |";
+        position: absolute;
+        font-size: 0.75em;
+        top: 0.425rem;
+        right: 1.7rem;
+        line-height: 1;
+        text-transform: uppercase;
+        color: inherit;
+        opacity: 0.5
+    }
+
+    .listingblock:hover code[data-lang]::before {
+        display: block
+    }
+
+    .listingblock:hover .clipboard {
+        display: block;
+    }
+
+    .clipboard {
+        display: none;
+        content: "  ";
+        position: absolute;
+        top: 0.3rem;
+        right: 0.5em;
+        height: 1em;
+        color: inherit;
+        border: none;
+        opacity: 0.5;
+        cursor: pointer;
+        filter: invert(50.2%);
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'%3E%3C/path%3E%3C/svg%3E") no-repeat;
+    }
+
+    @keyframes clibpard_rotation_frame {
+        50% { transform: rotateY(180deg); }
+    }
+
+    .clipboard_success {
+        filter: invert(100%);
+        animation: clibpard_rotation_frame 1s;
+    }
+</style>
+
+<script >
+    window.onload = function() {
+        var pre = document.getElementsByTagName('pre');
+
+        for (var i = 0; i < pre.length; i++) {
+            var b = document.createElement('button');
+            b.className = 'clipboard';
+            b.textContent = ' ';
+            if (pre[i].childNodes.length === 1 && pre[i].childNodes[0].nodeType === 3) {
+                var div = document.createElement('div');
+                div.textContent = pre[i].textContent;
+                pre[i].textContent = '';
+                pre[i].appendChild(div);
+            }
+            pre[i].appendChild(b);
+        }
+
+        var clipboard = new ClipboardJS('.clipboard', {
+           target: function(b) {
+                var p = b.parentNode;
+                if (p.className.includes("highlight")) {
+                    var elems = p.getElementsByTagName("code");
+                    if (elems.length > 0)
+                        return elems[0];
+                }
+                return p.childNodes[0];
+            }
+        });
+
+        clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.classList.add('clipboard_success');
+            setTimeout(function() {
+                e.trigger.classList.remove('clipboard_success');
+            }, 1300);
+        });
+
+        clipboard.on('error', function(e) {
+            console.error('Action:', e.action, e);
+            console.error('Trigger:', e.trigger);
+        });
+    };
+</script>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>How would a software developer create technical documents and sell them using the disruptive power of Web3 technologies? (Part I)</h1>
+<div class="details">
+<span id="author" class="author">Paulo Jerônimo</span><br>
+<span id="email" class="email"><a href="mailto:paulojeronimo@gmail.com">paulojeronimo@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#before-we-start-let-me-introduce-myself">Before we start, let me introduce myself</a></li>
+<li><a href="#this-is-a-small-article-in-which-i-insert-a-tutorial-a-little-longer-to-explain-how-you-could-write-it-to-turn-your-readers-into-customers">1. This is a small article in which I insert a tutorial (a little longer) to explain how you could write it to turn your readers into customers!</a></li>
+<li><a href="#a-sample-tutorial">2. A sample tutorial that you, as a <strong><em>Technical Writer</em></strong>, could take as an example to write yours (pay attention to its format!)</a>
+<ul class="sectlevel2">
+<li><a href="#ts">2.1. Building your Linux development environment on AWS (paid version)</a>
+<ul class="sectlevel3">
+<li><a href="#introduction">2.1.1. Introduction</a></li>
+<li><a href="#what-do-we-need">2.1.2. What do we need to install to follow this tutorial?</a></li>
+<li><a href="#what-do-we-need-to-know-before-starting-it">2.1.3. What do we need to know before starting it?</a></li>
+<li><a href="#part-1">2.1.4. &#8594; Part 1 &#8592;</a>
+<ul class="sectlevel4">
+<li><a href="#creating-an-aws-user">Creating an AWS user</a></li>
+<li><a href="#defining-some-aws-environment-variables">Defining some AWS environment variables</a></li>
+<li><a href="#creating-the-aws-instance">Creating the AWS instance</a></li>
+<li><a href="#saving-the-user-credentials">Saving the user credentials</a></li>
+<li><a href="#logging-into-the-instance-via-ssh">Logging into the instance via SSH</a></li>
+<li><a href="#checking-the-software-versions">Checking the software versions</a></li>
+<li><a href="#add-packages">Installing more packages</a></li>
+<li><a href="#git-configure">Configuring Git</a></li>
+<li><a href="#sdkman">Installing SDKMAN</a></li>
+<li><a href="#java-install">Installing Java (GraalVM version)</a></li>
+<li><a href="#installing-node-js-with-graalvm">Installing Node.js (with GraalVM)</a></li>
+</ul>
+</li>
+<li><a href="#part-2">2.1.5. &#8594; Part 2 &#8592;</a>
+<ul class="sectlevel4">
+<li><a href="#starting-to-code">Building the classic "Hello World!" in Java</a></li>
+<li><a href="#building-the-classic-hello-world-in-javascript">Building the classic "Hello World!" in JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#part-3">2.1.6. &#8594; Part 3 &#8592;</a>
+<ul class="sectlevel4">
+<li><a href="#deleting-the-aws-instance">Deleting the AWS instance</a></li>
+<li><a href="#deleting-the-aws-user">Deleting the AWS user</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#references">2.2. References</a></li>
+<li><a href="#about-this-tutorial">2.3. Thank you for buying this tutorial&#160;😀! Now you got more!</a></li>
+</ul>
+</li>
+<li><a href="#want-to-know-more">3. Want to know more about how to write texts (tutorials, ebooks) like this one?</a>
+<ul class="sectlevel2">
+<li><a href="#good-tools">3.1. I can indicate some good tools to you</a>
+<ul class="sectlevel3">
+<li><a href="#my-extension">3.1.1. My <strong>gen-code</strong> extension</a></li>
+</ul>
+</li>
+<li><a href="#i-can-offer-you-a-consultancy">3.2. I can offer you a consultancy &#8230;&#8203;</a></li>
+<li><a href="#my-course">3.3. You can buy <code>my docs-as-code course</code> (it will be available soon)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><br>
+</p>
+</div>
+<div class="imageblock text-center half-width">
+<div class="content">
+<img src="images/cover.jpeg" alt="cover">
+</div>
+</div>
+<div class="paragraph text-center">
+<p>Last update: 2023-06-09 10:46:15 -0300</p>
+</div>
+<div class="paragraph big text-center">
+<p><strong>Online PDF version:</strong><br>
+<strong><a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.pdf" class="bare">https://paulojeronimo.com/asciidoctor-web3-article/private/sample.pdf</a></strong></p>
+</div>
+<div class="paragraph text-center">
+<p><strong>Follow me, and give feedback about this article, here:</strong><br>
+<strong><a href="https://www.linkedin.com/feed/update/urn:li:activity:7068879548234313728/" class="bare">https://www.linkedin.com/feed/update/urn:li:activity:7068879548234313728/</a></strong></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph big">
+<p>If you write technical texts (like articles, tutorials, ebooks, etc) do you
+know that with a single text writing in <a href="https://asciidoctor.org/docs/what-is-asciidoc/">AsciiDoc</a> format (like
+<a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc">this one</a>) and <a href="#good-tools">the right tools</a>, you could
+offer more value to your readers (customers) by presenting it in different
+formats?<br>
+<br>
+Did you know that if you acquire knowledge in <a href="https://paulojeronimo.com/sitemap/#web3">Web3</a>, you will have much more
+creative ways to sell your texts?<br>
+<br>
+In this article, I will explore a little more about this subject, beginning by
+showing you how to generate many outputs from one unique document code
+(<a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc">this</a>).<br>
+<br>
+In Part II of this article (coming soon), I will detail how <a href="https://paulojeronimo.com/sitemap/#web3">Web3</a> technologies
+can achieve the second part of the story: help authors sell their texts using
+innovative ideas as a plus to the traditional means of payment, which involves
+prominent editors.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="before-we-start-let-me-introduce-myself"><a class="anchor" href="#before-we-start-let-me-introduce-myself"></a>Before we start, let me introduce myself</h2>
+<div class="sectionbody">
+<div id="FullStackDeveloper" class="paragraph">
+<p>I (the <a href="#author">author</a> of this article) <a href="https://paulojeronimo.com/cv/en/resume-web3.pdf">work as a Full
+Stack Developer</a> who has been acting in several areas of software development
+(since 1993). I have experience from the infrastructure to the front end,
+passing through <a href="https://paulojeronimo.com/cv/en/resume-devops.pdf">extensive coding time in middleware and the
+back end</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://paulojeronimo.com/tmp/ft2324/page-preview-1/">I&#8217;m also a triathlete, three (3) times Ironman</a>.</p>
+</div>
+<div class="paragraph">
+<p>So I didn&#8217;t get used to not being an expert in swimming, cycling, or running,
+just as I don&#8217;t consider myself, in my work, an infrastructure, backend, or
+frontend expert.</p>
+</div>
+<div class="paragraph">
+<p><span class="underline">In the software development world, my role has been to put the
+pieces of a giant puzzle together</span>. Today, with the help of technologies of
+Artificial Intelligence, my work has been made easier to do.</p>
+</div>
+<div class="paragraph">
+<p>That way, some of my software tutorials (<a href="#ts">like this one</a>)
+avoid discussing a single topic. Instead, they combine several things,
+providing a more realistic view of how the software works.</p>
+</div>
+<div class="paragraph">
+<p>As you can read, <strong><span class="underline">I am a <strong><em>Technical Writer</em></strong></span></strong>. I need to write about
+things that I develop or learn, and this is a thing that I like to do. You can
+read many of my texts at the following link:</p>
+</div>
+<div class="paragraph text-center">
+<p><a href="https://paulojeronimo.com/sitemap/#articles-or-tutorials" class="bare">https://paulojeronimo.com/sitemap/#articles-or-tutorials</a>.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m a Brazilian guy. So English is not my primary language. But I am doing my
+best to share my knowledge with you in this language. At the same time, I
+intend to help other software developers who speak Portuguese improve their
+skills. That&#8217;s why I also write closed captions in Portuguese for my videos.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="this-is-a-small-article-in-which-i-insert-a-tutorial-a-little-longer-to-explain-how-you-could-write-it-to-turn-your-readers-into-customers"><a class="anchor" href="#this-is-a-small-article-in-which-i-insert-a-tutorial-a-little-longer-to-explain-how-you-could-write-it-to-turn-your-readers-into-customers"></a>1. This is a small article in which I insert a tutorial (a little longer) to explain how you could write it to turn your readers into customers!</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph big text-center">
+<p>As a <strong><em>Technical Writer</em></strong><br>
+(and a <a href="#FullStackDeveloper">[FullStackDeveloper]</a>),</p>
+</div>
+<div class="paragraph text-center">
+<p>I created <a href="#ts">a tutorial</a><br>
+(<strong><a href="#what-do-we-need">Super easy to follow</a></strong>, as you will see in a moment!&#160;😀)<br>
+You don&#8217;t need to be a programmer like me<br>
+to write good professional tutorials and books.<br>
+But <strong><a href="#want-to-know-more">you need to know how to write better</a>!</strong><br>
+<br>
+<a href="#ts">This tutorial</a> is written in <a href="https://asciidoctor.org/docs/what-is-asciidoc/">AsciiDoc</a> format<br>
+(using <a href="https://github.com/asciidoctor/asciidoctor.js">Asciidoctor.js</a>,<br>
+one <a href="#my-extension">extension I developed</a> for it,<br>
+and <a href="#good-tools">other charming tools</a>)<br>
+<a id="this-doc"></a>Here is the source code of it:<br>
+<strong><a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc" class="bare">https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc</a></strong><br>
+(this was the original code I wrote)<br>
+<br>
+If you want to be a Full Stack Developer<br>
+(starting from using <a href="https://paulojeronimo.com/sitemap/#aws">AWS</a> and <a href="https://paulojeronimo.com/sitemap/#java">Java</a>, for example)<br>
+you may want to start your journey by following <a href="#ts">this tutorial</a>.<br>
+But &#8230;&#8203; wait &#8230;&#8203; In fact &#8230;&#8203;<br>
+<strong><span class="red">this is not a tutorial for newbie programmers</span></strong>!</p>
+</div>
+<div class="paragraph big text-center">
+<p><strong><span class="green">This is an article that I wrote for <strong><em>Technical Writers</em></strong></span></strong>!
+</p>
+</div>
+<div class="paragraph text-center">
+<p>So, <strong>the exciting part</strong> of this text<br>
+is not about the following <a href="#ts">tutorial</a>!<br>
+The cool here is the format (<a href="#this-doc">in the sample.adoc</a>) presented by<br>
+it, not the content.<br>
+It&#8217;s about the way you can write tutorials with the structure and the<br>
+<a href="#good-tools">right tools</a> to benefit you and your customers.<br>
+It&#8217;s about <a href="https://paulojeronimo.com/asciidoctor-web3-article/public#benefits">the benefits you can give to your<br>
+readers</a> (when they buy <a href="#ts">this tutorial</a>).</p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="a-sample-tutorial"><a class="anchor" href="#a-sample-tutorial"></a>2. A sample tutorial that you, as a <strong><em>Technical Writer</em></strong>, could take as an example to write yours (pay attention to its format!)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As mentioned, pay attention to the format I wrote in
+(<a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc">sample.adoc</a>). At some point, <a href="#my-course">I will launch my
+course covering it and other tools</a>.</p>
+</div>
+<div class="paragraph">
+<p>I wrote <a href="#ts">this tutorial</a> with an audience studying to take the
+<a href="https://aws.amazon.com/certification/certified-developer-associate/">AWS Certified Developer</a> certification exam.</p>
+</div>
+<div class="paragraph">
+<p>Intending to sell texts related to this theme, my strategy to sell them is,
+among others, to present the execution of the private version of my tutorial in
+a video on my YouTube channel. But, in the video description, I offer a link to
+the public text of my tutorial and show the benefits readers will get when they
+buy it.</p>
+</div>
+<div class="paragraph">
+<p>So, in short, to sell my tutorials, my strategy needs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://paulojeronimo.com/asciidoctor-web3-article/public#ts">A public version of my tutorial</a>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This link above is copied to the video description where I it.</p>
+</li>
+<li>
+<p>It includes a section where I present my
+<a href="https://paulojeronimo.com/asciidoctor-web3-article/public#about-this-tutorial">benefits to buyers</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/asciidoctor-web3-article/private#ts">A private version of it</a>, including
+<a href="https://paulojeronimo.com/asciidoctor-web3-article/private#pdf-version">this PDF</a>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>It includes a section where <a href="#about-this-tutorial">I thank my customers</a>
+and give them all their benefits.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="ts"><a class="anchor" href="#ts"></a>2.1. Building your Linux development environment on AWS (paid version)</h3>
+<div class="sect3">
+<h4 id="introduction"><a class="anchor" href="#introduction"></a>2.1.1. Introduction</h4>
+<div class="paragraph text-center">
+<p>Video recorded in Portuguese.<br>
+Click the image below to open it on YouTube.</p>
+</div>
+<div class="videoblock text-center">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/UCac0PziHHQ?rel=0&amp;list=PL3jVhh9mXmz9lzQiUlAbwjssOCayiCRmp" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>In practical terms, you will not like creating an AWS environment using what I
+will present in this tutorial. To create a cloud infrastructure on AWS,
+solutions like <a href="https://aws.amazon.com/cdk/">AWS CDK</a>, <a href="https://paulojeronimo.com/sitemap/#terraform">Terraform</a>, or even
+<a href="https://paulojeronimo.com/sitemap/#vagrant">Vagrant</a> (<a href="https://github.com/paulojeronimo/gs-rest-service-aws">the way I
+showed in this Git repository (which I built in 2018)</a>) are much more practical
+and straightforward.</p>
+</div>
+<div class="paragraph">
+<p>I also use many other alternatives (cheaper and very fast to mount) to create
+development environments. For example, <a href="https://aws.amazon.com/cloud9/">AWS Cloud9</a>,
+<a href="https://github.com/features/codespaces">GitHub Codespace</a>, <a href="https://www.gitpod.io/">Gitpod</a>, etc.</p>
+</div>
+<div class="paragraph">
+<p>However, the basic knowledge (of <a href="https://paulojeronimo.com/sitemap/#aws">AWS</a> and <a href="https://paulojeronimo.com/sitemap/#java">Java</a> fundamentals) I will give you
+in this tutorial is quite valuable for learning purposes. For example, suppose
+you want to obtain the <a href="https://aws.amazon.com/certification/certified-developer-associate/">AWS Certified Developer</a>
+certification. What you will practice using the commands below will serve as a
+basis for understanding <a href="https://aws.amazon.com/iam/">IAM</a> and <a href="https://aws.amazon.com/ec2/">EC2</a>, which, in
+turn, are required in the test for this certification.</p>
+</div>
+<div class="paragraph">
+<p>So, in the <a href="#part-1">first part</a>, I demonstrate how to create a machine to
+develop applitions using <a href="https://paulojeronimo.com/sitemap/#java">Java</a> and <a href="https://paulojeronimo.com/sitemap/#nodejs">Node.js</a>. In <a href="#part-2">part 2</a>, I
+illustrate the use of this environment to construct charming applications
+in my following tutorials.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+In this tutorial my focus is not teatch you how to develop in <a href="https://paulojeronimo.com/sitemap/#java">Java</a>
+or <a href="https://paulojeronimo.com/sitemap/#nodejs">Node.js</a>. So, here I&#8217;ll show you only a simple "Hello World!" in both
+languages.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="#part-3">Finally</a>, I present how you can unbuild
+the cloud environment.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="what-do-we-need"><a class="anchor" href="#what-do-we-need"></a>2.1.2. What do we need to install to follow this tutorial?</h4>
+<div class="paragraph">
+<p><strong><span class="underline">Nothing but a browser!</span></strong></p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll only need to have access to our root AWS account. So, if you don&#8217;t have
+an account on AWS, create it.</p>
+</div>
+<div class="paragraph">
+<p>After that, we&#8217;ll be using <a href="https://aws.amazon.com/cloudshell/">AWS CloudShell</a> to <strong>copy and paste</strong> all the commands
+(Bash scripts) in this tutorial to it. These scripts extensively use <a href="https://aws.amazon.com/cli/">AWS CLI</a>
+commands (commented on them).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="what-do-we-need-to-know-before-starting-it"><a class="anchor" href="#what-do-we-need-to-know-before-starting-it"></a>2.1.3. What do we need to know before starting it?</h4>
+<div class="paragraph">
+<p>Only two programming languages, at a basic level of knowledge:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shell Scripting (<a href="https://paulojeronimo.com/sitemap/#bash">Bash</a>).</p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#java">Java</a>. We&#8217;ll use the <a href="https://www.graalvm.org/">GraalVM</a>.</p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#javascript">JavaScript</a> (with <a href="https://paulojeronimo.com/sitemap/#nodejs">Node.js</a> inside <a href="https://www.graalvm.org/">GraalVM</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll build a Linux development environment. So, I assume you know the basics
+about it too.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="part-1"><a class="anchor" href="#part-1"></a>2.1.4. &#8594; Part 1 &#8592;</h4>
+<div class="paragraph">
+<p><strong>All the commands that I will show you here need only to be typed (or copied)
+to a terminal running Bash (<a href="https://aws.amazon.com/cloudshell/">AWS CloudShell</a>).</strong> So, just open it and start to
+<strong>copy and paste</strong> the following commands. Simple as that!&#160;😉</p>
+</div>
+<div class="sect4">
+<h5 id="creating-an-aws-user"><a class="anchor" href="#creating-an-aws-user"></a>Creating an AWS user</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Creating the User
+  aws iam create-user --user-name FullStackDev
+
+  echo Creating an Access Key
+  access_key=$(aws iam create-access-key --user-name FullStackDev)
+
+  echo Saving the access key
+  echo "$access_key" &gt; FullStackDev.access-key.json
+
+  echo Attaching the required policies to the user
+  for policy in AmazonEC2FullAccess AWSCloudShellFullAccess
+  do
+    aws iam attach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo -n Retrieving the Account ID '(12 digits): '
+  aws sts get-caller-identity --query 'Account' \
+    --output text &gt; FullStackDev.accountid.txt
+  cat FullStackDev.accountid.txt
+
+  echo Creating a password for the user FullStackDev
+
+  # See the NOTE password-generation
+  echo "1^$(tr -cd '[:alnum:]' &lt; /dev/urandom |
+    fold -w11 | head -n1)" &gt; FullStackDev.password.txt
+
+  # After the command below, you can test your login
+  # (NOTE login-testing)
+  echo Creating a login profile for user FullStackDev
+  aws iam create-login-profile --user-name FullStackDev \
+    --password $(&lt;FullStackDev.password.txt)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some NOTES about the code above:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>password-generation</strong> &#8594; The password is randomly generated. It starts with
+the fixed <code>1^</code>. Then it gains 11 more characters. This is to avoid the
+following error:</p>
+<div class="listingblock">
+<div class="content">
+<pre>An error occurred (PasswordPolicyViolation) when calling the CreateLoginProfile
+operation: Password should meet 1 more of the following requirements: Password
+should have at least one number, Password should have at least one symbol</pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>login-testing</strong>: Use the output of the next command in order to
+login on AWS through a new incognito browser window:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt;EOF
+Open https://$(&lt;FullStackDev.accountid.txt).signin.aws.amazon.com/console
+
+-&gt; Credentials &lt;-
+IAM User name: FullStackDev
+Password: $(&lt;FullStackDev.password.txt)
+
+-&gt; References -&gt;
+AWS/sign-in-urls-defined
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After logging, access the <a href="https://aws.amazon.com/cloudshell/">AWS CloudShell</a> and try this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws iam get-user --query 'User.UserName' --output text</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will receive the following error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>An error occurred (AccessDenied) when calling the GetUser operation: User:
+arn:aws:iam::229248205759:user/FullStackDev is not authorized to perform:
+iam:GetUser on resource: user FullStackDev because no identity-based policy
+allows the iam:GetUser action</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, back back to the cloudshell opened with your root account, type the
+following command to give that permission to the user <code>FullStackDev</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws iam attach-user-policy --user-name FullStackDev \
+  --policy-arn arn:aws:iam::aws:policy/IAMReadOnlyAccess</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, test the last <code>FullStackDev</code> command. You will see that it will succeed!<br>
+Sign out <code>FullStackDev</code> and close its incognito window.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="defining-some-aws-environment-variables"><a class="anchor" href="#defining-some-aws-environment-variables"></a>Defining some AWS environment variables</h5>
+<div class="paragraph">
+<p>The variables <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> are used
+to indicate that we will be using the user <code>FullStackDev</code> in our following
+<a href="https://aws.amazon.com/cli/">AWS CLI</a> commands.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Defining some environment variables
+  export AWS_ACCESS_KEY_ID=$(jq -r '.AccessKey.AccessKeyId' \
+    ~/FullStackDev.access-key.json)
+  export AWS_SECRET_ACCESS_KEY=$(jq -r '.AccessKey.SecretAccessKey' \
+    ~/FullStackDev.access-key.json)
+  export AWS_DEFAULT_REGION=us-east-1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of using these environment variables, we could also use the command <code>aws
+configure</code> to set them in a directory called <code>~/.aws/</code>.
+This command will create files named <code>credentials</code> and <code>config</code> inside this
+directory with the same information configured in the variables above.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We are using these variables in the cloud shell we are using for the root
+user because we want all objects created from the following commands to be
+associated with the FullStackDev user and not with our root user. That&#8217;s good
+practice!</p>
+</li>
+<li>
+<p>We wouldn&#8217;t need to define these environment variables if we kept the
+CloudShell window used by the FullStackDev user open and executed the instance
+creation commands inside it.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="creating-the-aws-instance"><a class="anchor" href="#creating-the-aws-instance"></a>Creating the AWS instance</h5>
+<div class="paragraph">
+<p>Let&#8217;s configure some other environment variables related to the machine we&#8217;ll
+create and export them:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  export my_machine_name=DevMachine1
+  export my_machine_security_group=DevMachines
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Creating the Security Group \"$my_machine_security_group\"
+  aws ec2 create-security-group \
+    --group-name $my_machine_security_group --description $my_machine_name
+
+  echo Authorizing access to port 22
+  aws ec2 authorize-security-group-ingress \
+    --group-name $my_machine_security_group --protocol tcp --port 22 \
+    --cidr 0.0.0.0/0
+
+  echo Creating the Key Pair
+  aws ec2 create-key-pair --key-name FullStackDev \
+    --query 'KeyMaterial' --output text &gt; FullStackDev.pem
+  chmod 400 FullStackDev.pem
+
+  echo Building a backup of all credentials. \
+    Save it to your computer!
+  tar cvf FullStackDev.tar FullStackDev.*
+
+  echo Launching the EC2 Instance
+  aws ec2 run-instances --image-id ami-053b0d53c279acc90 \
+    --count 1 --instance-type t2.medium --key-name FullStackDev \
+    --security-group-ids $my_machine_security_group --tag-specifications \
+    "ResourceType=instance,Tags=[{Key=Name,Value=$my_machine_name}]"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the instance creation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Waiting for \"$my_machine_name\" to Start ...
+  aws ec2 wait instance-running --filters \
+    "Name=tag:Name,Values=$my_machine_name"
+
+  echo -n 'Retrieving the Instance ID: '
+  instance_id=$(aws ec2 describe-instances --filters \
+    "Name=tag:Name,Values=$my_machine_name" --query \
+    'Reservations[].Instances[].InstanceId' --output text)
+  echo $instance_id
+
+  echo -n 'Retrieving the Public DNS Name: '
+  public_dns_name=$(aws ec2 describe-instances \
+    --instance-ids $instance_id --query \
+    'Reservations[].Instances[].PublicDnsName' --output text)
+  echo $public_dns_name
+
+  echo "ubuntu@$public_dns_name" &gt; FullStackDev.$my_machine_name
+  tar rf FullStackDev.tar FullStackDev.$my_machine_name
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="saving-the-user-credentials"><a class="anchor" href="#saving-the-user-credentials"></a>Saving the user credentials</h5>
+<div class="paragraph">
+<p>Not that you you will have a bunch of
+<code>FullStackDev</code> files generated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -la FullStackDev.*</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">-rw-rw-r-- 1 cloudshell-user cloudshell-user   261 May 27 21:21 FullStackDev.access-key.json
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    13 May 27 21:21 FullStackDev.accountid.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    49 May 27 21:25 FullStackDev.DevMachine1
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    14 May 27 21:21 FullStackDev.password.txt
+-r-------- 1 cloudshell-user cloudshell-user  1679 May 27 21:24 FullStackDev.pem
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 10240 May 27 21:25 FullStackDev.tar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We may want to save the file <code>FullStackDev.tar</code>
+if we want keep our virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>In order to download this file, click in <code>Actions/Download file</code>,
+as shown in the following figure:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cloudshell.1.png" alt="cloudshell.1">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, specify the name of the file to download:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cloudshell.2.png" alt="cloudshell.2">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="logging-into-the-instance-via-ssh"><a class="anchor" href="#logging-into-the-instance-via-ssh"></a>Logging into the instance via SSH</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Entering the Instance via SSH
+  ssh -i FullStackDev.pem ubuntu@$public_dns_name
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you saved the <code>FullStackDev.tar</code> file on a local machine with a Linux
+environment in a directory called <code>~/Downloads</code>, you could try the following
+steps to gain remote access to the <code>DevMachine1</code> machine we just created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  cd ~/Downloads
+  tar xf FullStackDev.tar
+  ssh -i FullStackDev.pem $(&lt;FullStackDev.$my_machine_name)
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="checking-the-software-versions"><a class="anchor" href="#checking-the-software-versions"></a>Checking the software versions</h5>
+<div class="paragraph">
+<p>After following the last section, you should have your Linux machine created.
+It will be an environment mounted with a Ubuntu version 22.04.</p>
+</div>
+<div class="paragraph">
+<p>So, the following are the only prerequisites that we need to attend before
+<a href="#starting-to-code">starting to code in Java</a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An <a href="https://paulojeronimo.com/sitemap/#bash">Bash</a> terminal.</p>
+</li>
+<li>
+<p><a href="#add-packages">Zip and Unzip installed</a> (to <a href="#sdkman">install SDKMAN</a>).</p>
+</li>
+<li>
+<p>Git installed and <a href="#git-configure">configured</a>.</p>
+</li>
+<li>
+<p><a href="#java-install">Java installed</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These are the expected versions of the software prerequisites, after the
+machine creation:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Expected Ouput</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo $BASH_VERSION</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">5.1.16(1)-release</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git --version</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">git version 2.34.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="add-packages"><a class="anchor" href="#add-packages"></a>Installing more packages</h5>
+<div class="paragraph">
+<p>Install some other required packages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  sudo apt update
+
+  # required by SDKMAN:
+  sudo apt -y install zip unzip
+
+  # required by GraalVM native-image:
+  sudo apt -y install gcc zlib1g-dev
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>In a Ubuntu 22.04 local machine environment</strong> (your actual machine, outside the
+AWS), you could do our next steps by creating a local user <code>dev</code> and setting a
+password for it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  sudo useradd -m -s /bin/bash -G sudo dev
+  sudo passwd dev
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After that, you could use <code>sudo</code> to logging in with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - dev</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="git-configure"><a class="anchor" href="#git-configure"></a>Configuring Git</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  confirm() {
+    local prompt=$1
+    local varname=$2
+    while :
+    do
+      read -p "$prompt: " myvar
+      read -p "Confirm (Y/n)? " -n 1 -r
+      echo
+      [[ ${REPLY:-y} =~ ^[Yy]$ ]] &amp;&amp; {
+        eval $varname="'$myvar'"
+        break
+      }
+    done
+  }
+  confirm user.name my_user &amp;&amp;
+    git config --global user.name "$my_user"
+  confirm user.email my_user &amp;&amp;
+    git config --global user.email "$my_user"
+  git config --global init.defaultBranch main
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify your configurations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git config --global --list</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="sdkman"><a class="anchor" href="#sdkman"></a>Installing SDKMAN</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  curl -s "https://get.sdkman.io" | bash
+  source ~/.sdkman/bin/sdkman-init.sh
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="java-install"><a class="anchor" href="#java-install"></a>Installing Java (GraalVM version)</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sdk install java 22.3.r19-grl &amp;&amp; java -version</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="installing-node-js-with-graalvm"><a class="anchor" href="#installing-node-js-with-graalvm"></a>Installing Node.js (with GraalVM)</h5>
+<div class="paragraph">
+<p>Install the Node.js component, check the location of <code>node</code> and <code>npm</code> commands and their versions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  gu install nodejs
+  echo
+  for cmd in node npm
+  do
+    echo -n "$cmd (location / version): "
+    which $cmd | tr -d '\n'
+    echo -n " / "; $cmd -v
+  done
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="part-2"><a class="anchor" href="#part-2"></a>2.1.5. &#8594; Part 2 &#8592;</h4>
+<div class="sect4">
+<h5 id="starting-to-code"><a class="anchor" href="#starting-to-code"></a>Building the classic "Hello World!" in Java</h5>
+<div class="paragraph">
+<p>We will create a simple Java code that prints a "Hello World!".</p>
+</div>
+<div class="paragraph">
+<p>To do this using our opened terminal, <strong>copy and paste</strong> the following commands to
+it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  mkdir -p simple-tutorial/java &amp;&amp; cd $_
+  cat &lt;&lt;'EOF' &gt; HelloWorld.java
+public class HelloWorld {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+}
+EOF
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile and run the code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">javac HelloWorld.java &amp;&amp; java HelloWorld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install GraalVM <code>native-image</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gu install native-image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build ant test the <code>helloworld</code> binary:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">native-image HelloWorld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This takes a minute to execute:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/helloworld.png" alt="helloworld">
+</div>
+</div>
+<div class="paragraph">
+<p>Test the <code>helloworld</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./helloworld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In terms of performance, a native image is much superior:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ time java HelloWorld
+Hello World!
+
+real    0m0.076s
+user    0m0.085s
+sys     0m0.014s
+
+$ time ./helloworld
+Hello World!
+
+real    0m0.003s
+user    0m0.003s
+sys     0m0.000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the <code>helloworld</code> binary dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ldd helloworld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is what we expect to see as a result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">linux-vdso.so.1 (0x00007ffea9353000)
+libz.so.1 =&gt; /lib/x86_64-linux-gnu/libz.so.1 (0x00007f2438e40000)
+libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2437e00000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f2438e77000)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initialize a new Git repository and make your first commit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  cd ..
+  git init
+  cat &gt; .gitignore &lt;&lt;EOF
+*.class
+/java/helloworld*
+EOF
+  git add .
+  git commit -m 'Made my first commit. Added HelloWorld.java'
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="building-the-classic-hello-world-in-javascript"><a class="anchor" href="#building-the-classic-hello-world-in-javascript"></a>Building the classic "Hello World!" in JavaScript</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  mkdir javascript &amp;&amp; cd $_
+  cat &gt; HelloWorld.js &lt;&lt;'EOF'
+console.log('Hello World!')
+EOF
+  node HelloWorld.js
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s do all last <code>git commit</code> in this tutorial:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git add -A &amp;&amp; git commit -m 'Added HelloWorld.js'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="part-3"><a class="anchor" href="#part-3"></a>2.1.6. &#8594; Part 3 &#8592;</h4>
+<div class="sect4">
+<h5 id="deleting-the-aws-instance"><a class="anchor" href="#deleting-the-aws-instance"></a>Deleting the AWS instance</h5>
+<div class="paragraph">
+<p>First, exit your VM.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Type <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>D</kbd></span> or <code>exit</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, in the <code>cloudshell</code> terminal, <strong>copy and paste</strong> the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  echo Retrieving the Instance ID
+  instance_id=$(aws ec2 describe-instances --filters \
+    "Name=tag:Name,Values=$my_machine_name" --query \
+    'Reservations[].Instances[].InstanceId' --output text)
+
+  [ "$my_machine_security_group" ] || {
+    echo Retrieving the Security Group ID
+    my_machine_security_group=$(aws ec2 describe-instances \
+      --instance-ids $instance_id --query \
+      'Reservations[].Instances[].SecurityGroups[].GroupId' --output text)
+  }
+
+  echo Retrieving the Key Pair Name
+  key_pair_name=$(aws ec2 describe-instances \
+    --instance-ids $instance_id --query \
+    'Reservations[].Instances[].KeyName' --output text)
+
+  echo Terminating the Instance
+  aws ec2 terminate-instances --instance-ids $instance_id
+
+  echo Waiting for the Instance to Terminate
+  aws ec2 wait instance-terminated --instance-ids $instance_id
+
+  echo Deleting the Tags associated with the Instance
+  aws ec2 delete-tags --resources $instance_id
+
+  echo Deleting the Security Group
+  aws ec2 delete-security-group --group-id $my_machine_security_group
+
+  echo Deleting the Key Pair
+  aws ec2 delete-key-pair --key-name $key_pair_name
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-the-aws-user"><a class="anchor" href="#deleting-the-aws-user"></a>Deleting the AWS user</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+
+  echo Removing the Access Keys
+  access_keys=$(aws iam list-access-keys --user-name FullStackDev \
+    --query 'AccessKeyMetadata[].AccessKeyId' --output text)
+  for key_id in $access_keys
+  do
+    aws iam delete-access-key --user-name FullStackDev \
+      --access-key-id $key_id
+  done
+
+  echo Detaching Policies
+  for policy in \
+    AmazonEC2FullAccess AWSCloudShellFullAccess IAMReadOnlyAccess
+  do
+    aws iam detach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo Deleting the login profile
+  aws iam delete-login-profile --user-name FullStackDev
+
+  echo Deleting the User
+  aws iam delete-user --user-name FullStackDev
+}</code></pre>
+</div>
+</div>
+<hr>
+<div class="paragraph red big text-center">
+<p><strong>That&#8217;s it for this tutorial.<br>
+Thanks for following it!</strong></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>2.2. References</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://paulojeronimo.com/sitemap/#aws">AWS</a>: </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a id="cloudshell"></a><strong><a href="https://aws.amazon.com/cloudshell/">AWS CloudShell</a></strong> &#8594; <a href="https://aws.amazon.com/cloudshell/" class="bare">https://aws.amazon.com/cloudshell/</a></p>
+</li>
+<li>
+<p><strong>sign-in-url-defined</strong> &#8594; About sign-in URLs<br>
+<a href="https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html" class="bare">https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html</a></p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://www.graalvm.org/">GraalVM</a>: </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Node.js Runtime<br>
+<a href="https://www.graalvm.org/22.0/reference-manual/js/NodeJS/" class="bare">https://www.graalvm.org/22.0/reference-manual/js/NodeJS/</a></p>
+</li>
+<li>
+<p>How to create a node.js Native Image with GraalVM<br>
+<a href="https://stackoverflow.com/questions/53734585/how-to-create-a-node-js-native-image-with-graalvm" class="bare">https://stackoverflow.com/questions/53734585/how-to-create-a-node-js-native-image-with-graalvm</a></p>
+</li>
+<li>
+<p>Build a Native Executable<br>
+<a href="https://www.graalvm.org/22.2/reference-manual/native-image/" class="bare">https://www.graalvm.org/22.2/reference-manual/native-image/</a></p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="about-this-tutorial"><a class="anchor" href="#about-this-tutorial"></a>2.3. Thank you for buying this tutorial&#160;😀! Now you got more!</h3>
+<div class="paragraph">
+<p>You read the <strong><span class="blue">paid version</span></strong> of this tutorial, which offers you (my
+customer) <a href="https://paulojeronimo.com/asciidoctor-web3-article/public#benefits">some other benefits than the public
+version</a>.</p>
+</div>
+<div class="paragraph">
+<p>Here are the benefits <a href="https://paulojeronimo.com/asciidoctor-web3-article/public#benefits">that I promised</a> to you:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Content customized for you</strong>: did you notice your name at some points in this
+text?</p>
+</li>
+<li>
+<p><strong>Facility to copy and paste commands</strong>: did you notice the <strong>copy and paste</strong> button in the
+HTML version? Also, did you see that each block code in the PDF version
+(presented as an image) is clickable? When you click the figure of the source
+code, a window browser is opened, and then you can copy it.</p>
+</li>
+<li>
+<p><strong>Access to the Git repository</strong>: after you pass me your GitHub user account, you
+will have access to the private Git repository of tutorials like this.</p>
+</li>
+<li>
+<p><strong>No advertisement</strong>: did you see any ad in this version?&#160;😉</p>
+</li>
+<li>
+<p><strong>Extra content</strong>: did you notice the <a href="#references">References</a> section? Also,
+updates to this tutorial will receive more private content soon.</p>
+</li>
+<li>
+<p><a id="pdf-version"></a><strong>A PDF version</strong>:
+download it here &#8594; <a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.pdf" class="bare">https://paulojeronimo.com/asciidoctor-web3-article/private/sample.pdf</a></p>
+</li>
+<li>
+<p><strong>Web3 Tokens</strong>: You will get more information about how to gain
+these Web3 tokens in the following tutorials.</p>
+</li>
+<li>
+<p><strong>Direct support</strong>: Please, subscribe to <span class="underline">my private
+Discord channel</span> to get my support.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph big text-center">
+<p><strong><a href="https://paulojeronimo.com/asciidoctor-web3-article/public#ts">See the public version</a></strong></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="want-to-know-more"><a class="anchor" href="#want-to-know-more"></a>3. Want to know more about how to write texts (tutorials, ebooks) like this one?</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="good-tools"><a class="anchor" href="#good-tools"></a>3.1. I can indicate some good tools to you</h3>
+<div class="paragraph">
+<p>Here are some of the tools that I have experience in use to create my texts:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Category</th>
+<th class="tableblock halign-left valign-top">Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text formats</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a> and <a href="https://github.github.com/gfm/">GFM</a></p>
+</li>
+<li>
+<p><a href="https://mdxjs.com/">MDX</a></p>
+</li>
+<li>
+<p><a href="https://asciidoctor.org/docs/what-is-asciidoc/">AsciiDoc</a></p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text processors</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/txt2tags/txt2tags">Txt2tags</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#asciidoctor_">Asciidoctor</a> (<a href="https://paulojeronimo.com/sitemap/#ruby">Ruby</a> version) including:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://github.com/asciidoctor/asciidoctor.js">Asciidoctor.js</a> (<a href="https://paulojeronimo.com/sitemap/#javascript">JavaScript</a> version) including <a href="https://asciidoctor.org/docs/extensions/">many extensions</a> like <a href="#my-extension">my extension</a></p>
+</li>
+<li>
+<p><a href="https://github.com/asciidoctor/asciidoctorj">AsciidoctorJ</a> (<a href="https://paulojeronimo.com/sitemap/#java">Java</a> version)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text Editor</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#neovim">Neovim</a></p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artificial Intelligence</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://translate.google.com">Google Translate</a></p>
+</li>
+<li>
+<p><a href="https://www.deepl.com/translator">DeepL Translate</a></p>
+</li>
+<li>
+<p><a href="https://grammarly.com">Grammarly</a></p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Programming languages</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#bash">Bash</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#python">Python</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#javascript">JavaScript</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#java">Java</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#groovy">Groovy</a></p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#ruby">Ruby</a></p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="my-extension"><a class="anchor" href="#my-extension"></a>3.1.1. My <strong>gen-code</strong> extension</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Is a <a href="https://github.com/asciidoctor/asciidoctor.js">Asciidoctor.js</a> <a href="https://docs.asciidoctor.org/asciidoctor.js/latest/extend/extensions/preprocessor/">Preprocessor Extension</a>.</p>
+</li>
+<li>
+<p>The source of this document (<a href="https://paulojeronimo.com/asciidoctor-web3-article/private/sample.adoc">sample.adoc</a>) uses it which is responsible for:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate source files from source code that are inside some source blocks.</p>
+</li>
+<li>
+<p>Generate attributes used by the document itself.</p>
+</li>
+<li>
+<p>Convert these generated codes to images using tools like <a href="https://github.com/Aloxaf/silicon">Silicon</a> and <a href="https://github.com/tkrkt/text2png">Text2png</a>.</p>
+</li>
+<li>
+<p>Generate another document <a href="https://paulojeronimo.com/asciidoctor-web3-article/public/sample.adoc">sample.adoc (public)</a> that only refer to the images created.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Currently, its source code is unavailable, but it will soon be open source.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="i-can-offer-you-a-consultancy"><a class="anchor" href="#i-can-offer-you-a-consultancy"></a>3.2. I can offer you a consultancy &#8230;&#8203;</h3>
+<div class="paragraph">
+<p>... in which I will give you my tips about <a href="#good-tools">the tools I use to
+create my documents</a> and/ or we&#8217;ll create some documents together on a topic
+of your need.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="my-course"><a class="anchor" href="#my-course"></a>3.3. You can buy <code>my docs-as-code course</code> (it will be available soon)</h3>
+<div id="course-docs" class="paragraph">
+<p>In my course, we will explore how the <a href="https://asciidoctor.org/docs/what-is-asciidoc/">AsciiDoc</a> format is used in some of my
+<code>docs-as-code</code> projects, including these:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The project that builds this document you are reading.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>It is created with some code in <a href="https://paulojeronimo.com/sitemap/#bash">Bash</a> and <a href="https://paulojeronimo.com/sitemap/#javascript">JavaScript</a> (running on <a href="https://paulojeronimo.com/sitemap/#nodejs">Node.js</a>).</p>
+</li>
+<li>
+<p>It uses <a href="#my-extension">my extension</a>.</p>
+</li>
+<li>
+<p>Currently, the generated PDF version is created by
+<a href="https://github.com/asciidoctor/asciidoctor-pdf">asciidoctor-pdf</a> (which uses a Ruby execution
+environment). But, until the availability of this course, I intend to migrate it
+to use <a href="https://github.com/ggrossetie/asciidoctor-web-pdf">Asciidoctor Web PDF</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://github.com/paulojeronimo/paulojeronimo.github.io">The project of my WebSite</a>.</p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/cv/README.html">The project of my CV</a>.</p>
+</li>
+<li>
+<p>Some AsciiDoc slides, like these:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://paulojeronimo.com/asciidoc-dzslides-slides/" class="bare">https://paulojeronimo.com/asciidoc-dzslides-slides/</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>So, based on the code of the projects above, we will see how the following
+tools are used to build AsciiDoc documents:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#neovim">Neovim</a> &#8592; My favorite text editor.</p>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#bash">Bash</a> &#8592; We&#8217;ll use how I use it to build <a href="#course-docs">these docs</a>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://gist.github.com/paulojeronimo/95977442a96c0c6571064d10c997d3f2">docker-asciidoctor-builder</a> &#8592; A simple <a href="https://paulojeronimo.com/sitemap/#bash">Bash</a> tool that I developed and use a lot</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://paulojeronimo.com/sitemap/#asciidoctor_">Asciidoctor</a> (<a href="https://paulojeronimo.com/sitemap/#ruby">Ruby</a> version).</p>
+</li>
+<li>
+<p><a href="https://github.com/asciidoctor/asciidoctor.js">Asciidoctor.js</a> and some extensions (including <a href="#my-extension">my extension</a>).</p>
+</li>
+<li>
+<p><a href="https://pages.github.com/">GitHub Pages</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As a bonus, I also intend to show you a little about the following tools:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/ggrossetie/asciidoctor-web-pdf">Asciidoctor Web PDF</a>.</p>
+</li>
+<li>
+<p><a href="https://antora.org/">Antora</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>

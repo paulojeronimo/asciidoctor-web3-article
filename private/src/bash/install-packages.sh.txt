@@ -1,0 +1,9 @@
+{
+  sudo apt update
+
+  # required by SDKMAN:
+  sudo apt -y install zip unzip
+
+  # required by GraalVM native-image:
+  sudo apt -y install gcc zlib1g-dev
+}

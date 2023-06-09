@@ -1,0 +1,4 @@
+{
+  export my_machine_name={my_machine_name}
+  export my_machine_security_group=DevMachines
+}

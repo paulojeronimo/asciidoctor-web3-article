@@ -1,0 +1,20 @@
+{
+  echo Waiting for \"$my_machine_name\" to Start ...
+  aws ec2 wait instance-running --filters \
+    "Name=tag:Name,Values=$my_machine_name"
+
+  echo -n 'Retrieving the Instance ID: '
+  instance_id=$(aws ec2 describe-instances --filters \
+    "Name=tag:Name,Values=$my_machine_name" --query \
+    'Reservations[].Instances[].InstanceId' --output text)
+  echo $instance_id
+
+  echo -n 'Retrieving the Public DNS Name: '
+  public_dns_name=$(aws ec2 describe-instances \
+    --instance-ids $instance_id --query \
+    'Reservations[].Instances[].PublicDnsName' --output text)
+  echo $public_dns_name
+
+  echo "ubuntu@$public_dns_name" > FullStackDev.$my_machine_name
+  tar rf FullStackDev.tar FullStackDev.$my_machine_name
+}

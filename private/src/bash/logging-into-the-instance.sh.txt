@@ -1,0 +1,4 @@
+{
+  echo Entering the Instance via SSH
+  ssh -i FullStackDev.pem ubuntu@$public_dns_name
+}

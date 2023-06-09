@@ -1,0 +1,10 @@
+{
+  mkdir -p simple-tutorial/java && cd $_
+  cat <<'EOF' > HelloWorld.java
+public class HelloWorld {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+}
+EOF
+}

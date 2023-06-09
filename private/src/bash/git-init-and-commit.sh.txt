@@ -1,0 +1,10 @@
+{
+  cd ..
+  git init
+  cat > .gitignore <<EOF
+*.class
+/java/helloworld*
+EOF
+  git add .
+  git commit -m 'Made my first commit. Added HelloWorld.java'
+}

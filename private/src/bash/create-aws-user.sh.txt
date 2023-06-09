@@ -1,0 +1,34 @@
+{
+  echo Creating the User
+  aws iam create-user --user-name FullStackDev
+
+  echo Creating an Access Key
+  access_key=$(aws iam create-access-key --user-name FullStackDev)
+
+  echo Saving the access key
+  echo "$access_key" > FullStackDev.access-key.json
+
+  echo Attaching the required policies to the user
+  for policy in AmazonEC2FullAccess AWSCloudShellFullAccess
+  do
+    aws iam attach-user-policy --user-name FullStackDev \
+      --policy-arn arn:aws:iam::aws:policy/$policy
+  done
+
+  echo -n Retrieving the Account ID '(12 digits): '
+  aws sts get-caller-identity --query 'Account' \
+    --output text > FullStackDev.accountid.txt
+  cat FullStackDev.accountid.txt
+
+  echo Creating a password for the user FullStackDev
+
+  # See the NOTE password-generation
+  echo "1^$(tr -cd '[:alnum:]' < /dev/urandom |
+    fold -w11 | head -n1)" > FullStackDev.password.txt
+
+  # After the command below, you can test your login
+  # (NOTE login-testing)
+  echo Creating a login profile for user FullStackDev
+  aws iam create-login-profile --user-name FullStackDev \
+    --password $(<FullStackDev.password.txt)
+}

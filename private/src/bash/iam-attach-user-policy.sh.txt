@@ -1,0 +1,2 @@
+aws iam attach-user-policy --user-name FullStackDev \
+  --policy-arn arn:aws:iam::aws:policy/IAMReadOnlyAccess

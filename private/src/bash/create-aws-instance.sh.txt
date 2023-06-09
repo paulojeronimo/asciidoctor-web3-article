@@ -1,0 +1,25 @@
+{
+  echo Creating the Security Group \"$my_machine_security_group\"
+  aws ec2 create-security-group \
+    --group-name $my_machine_security_group --description $my_machine_name
+
+  echo Authorizing access to port 22
+  aws ec2 authorize-security-group-ingress \
+    --group-name $my_machine_security_group --protocol tcp --port 22 \
+    --cidr 0.0.0.0/0
+
+  echo Creating the Key Pair
+  aws ec2 create-key-pair --key-name FullStackDev \
+    --query 'KeyMaterial' --output text > FullStackDev.pem
+  chmod 400 FullStackDev.pem
+
+  echo Building a backup of all credentials. \
+    Save it to your computer!
+  tar cvf FullStackDev.tar FullStackDev.*
+
+  echo Launching the EC2 Instance
+  aws ec2 run-instances --image-id ami-053b0d53c279acc90 \
+    --count 1 --instance-type t2.medium --key-name FullStackDev \
+    --security-group-ids $my_machine_security_group --tag-specifications \
+    "ResourceType=instance,Tags=[{Key=Name,Value=$my_machine_name}]"
+}

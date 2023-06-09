@@ -1,0 +1,21 @@
+{
+  confirm() {
+    local prompt=$1
+    local varname=$2
+    while :
+    do
+      read -p "$prompt: " myvar
+      read -p "Confirm (Y/n)? " -n 1 -r
+      echo
+      [[ ${REPLY:-y} =~ ^[Yy]$ ]] && {
+        eval $varname="'$myvar'"
+        break
+      }
+    done
+  }
+  confirm user.name my_user &&
+    git config --global user.name "$my_user"
+  confirm user.email my_user &&
+    git config --global user.email "$my_user"
+  git config --global init.defaultBranch main
+}

@@ -1,0 +1,6 @@
+-rw-rw-r-- 1 cloudshell-user cloudshell-user   261 May 27 21:21 FullStackDev.access-key.json
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    13 May 27 21:21 FullStackDev.accountid.txt
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    49 May 27 21:25 FullStackDev.DevMachine1
+-rw-rw-r-- 1 cloudshell-user cloudshell-user    14 May 27 21:21 FullStackDev.password.txt
+-r-------- 1 cloudshell-user cloudshell-user  1679 May 27 21:24 FullStackDev.pem
+-rw-rw-r-- 1 cloudshell-user cloudshell-user 10240 May 27 21:25 FullStackDev.tar
